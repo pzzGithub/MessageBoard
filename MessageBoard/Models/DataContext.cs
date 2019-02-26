@@ -9,5 +9,6 @@ namespace MessageBoard.Models
     public class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Topic> Topics { get; set; }
     }
 }
