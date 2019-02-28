@@ -13,43 +13,61 @@ namespace MessageBoard.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var topics = dataContext.Topics.ToList();
+            return View(topics);
         }
 
-        public ActionResult AddTopic()
+        public ActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult AddTopic(Topic topic)
+        public ActionResult Create(Topic topic)
         {
+            topic.CreateTime = DateTime.Now;
+            topic.UserId = (int)Session["UserId"];
             dataContext.Topics.Add(topic);
             dataContext.SaveChanges();
             return Content(topic.TopicTitle);
         }
-   
-        public ActionResult ListTopics()
+
+        public ActionResult MyTopic()
         {
-            List<Topic> topics=dataContext.Topics.ToList();
+            int UserId = (int)Session["UserId"];
+            var topics = dataContext.Topics.Where(t=>t.UserId.Equals(UserId)).ToList();
             return View(topics);
         }
 
-        public ActionResult EditTopic()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var topic=dataContext.Topics.Find(id);
+            return View(topic);
+            
+        }
+        [HttpPost]
+        public ActionResult Edit(Topic topic)
+        {
+            Topic updateTopic=dataContext.Topics.Find(topic.TopicId);
+            updateTopic.TopicTitle = topic.TopicTitle;
+            updateTopic.TopicDescription = topic.TopicDescription;
+            dataContext.SaveChanges();
+            return RedirectToAction("MyTopic");
         }
 
-        public ActionResult DeleteTopic(int id)
+        public ActionResult Delete(int id)
         {
             Topic topic=dataContext.Topics.Find(id);
-            if (topic == null)
+            if(topic!=null)
             {
-                return HttpNotFound();
+                dataContext.Topics.Remove(topic);
+                dataContext.SaveChanges();
+                return RedirectToAction("MyTopic");
             }
             else
             {
-                return View(topic);
+                return Content("该主题不存在");
             }
         }
+
     }
 }

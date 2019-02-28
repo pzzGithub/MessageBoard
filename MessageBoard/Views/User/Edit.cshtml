@@ -1,0 +1,60 @@
+﻿@model MessageBoard.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MyLayout2.cshtml";
+}
+
+<div style="padding: 15px;">
+    <div class="layui-container">
+        <div class="layui-row" style="margin-bottom: 15px;border-radius: 2px;background-color: #fff;box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);padding:10px 0px;margin:auto 25%;">
+            <form class="layui-form" action="/User/Edit" method="post">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>个人信息修改</legend>
+                </fieldset>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <label class="layui-form-label">用户ID</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="UserId" placeholder="请输入用户名" lay-verify="required" autocomplete="off" class="layui-input" value="@Model.UserId" readonly>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Username" placeholder="请输入用户名" lay-verify="required" autocomplete="off" class="layui-input" value="@Model.Username" readonly>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="Password" placeholder="请输入密码" lay-verify="required" autocomplete="off" class="layui-input" value="@Model.Password">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Email" placeholder="请输入邮箱" lay-verify="required|email" autocomplete="off" class="layui-input" value="@Model.Email">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="男" title="男" checked="">
+                        <input type="radio" name="sex" value="女" title="女">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <div class="layui-input-inline">
+                        <input type="hidden" name="CreateTime" value="@Model.CreateTime">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="padding:0% 20%">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">编辑</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

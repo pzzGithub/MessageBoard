@@ -19,6 +19,7 @@ namespace MessageBoard.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
+            user.CreateTime = DateTime.Now;
             dataContext.Users.Add(user);
             dataContext.SaveChanges();
             return RedirectToAction("Login");
@@ -37,18 +38,20 @@ namespace MessageBoard.Controllers
             if (user.Count() > 0)
             {
                 User u = user.First();
-                Session["username"] = u.Username;
-                return RedirectToAction("ShowSelf");
+
+                Session["Username"] = u.Username;
+                Session["UserId"] = u.UserId;
+                return RedirectToAction("Detail");
             }
             else
             {
                 //登陆失败页面
-                return View("View", null);
+                return Content("用户名或密码错误");
             }
 
         }
 
-        public ActionResult ShowSelf()
+        public ActionResult Detail()
         {
             string username = (string)Session["username"];
             if (username != null)
@@ -61,13 +64,12 @@ namespace MessageBoard.Controllers
             }
             else
             {
-                //未登录页面
-                return View(new User(1, "pzz", "123456", "男", "email", DateTime.Now));
+                return Content("未登陆");
             }
 
         }
 
-        public ActionResult EditUser(int id)
+        public ActionResult Edit(int id)
         {
             User user = dataContext.Users.Find(id);
             if (user == null)
@@ -75,13 +77,16 @@ namespace MessageBoard.Controllers
             return View(user);
         }
         [HttpPost]
-        public ActionResult EditUser(User user)
+        public ActionResult Edit(User user)
         {
-            if (ModelState.IsValid)
+            if (user!=null)
             {
-                dataContext.Entry(user).State= EntityState.Modified;
+                var updateUser=dataContext.Users.Find(user.UserId);
+                updateUser.Password = user.Password;
+                updateUser.Sex = user.Sex;
+                updateUser.Email = user.Email;
                 dataContext.SaveChanges();
-                return RedirectToAction("ShowSelf");
+                return RedirectToAction("Detail");
             }
             return View(user);
         }

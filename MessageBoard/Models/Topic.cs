@@ -18,24 +18,12 @@ namespace MessageBoard.Models
 
         public string TopicDescription { get; set; }
 
-        public virtual User User { get; set; }
+        public int UserId { get; set; }
 
         [Display(Name = "添加时间")]
         [Required]
         public DateTime CreateTime { get; set; }
 
-        public Topic(int topicId, string topicTitle, string topicDescription, User user, DateTime createTime)
-        {
-            TopicId = topicId;
-            TopicTitle = topicTitle;
-            TopicDescription = topicDescription;
-            User = user;
-            CreateTime = DateTime.Now;
-        }
-
-        public Topic()
-        {
-            CreateTime = DateTime.Now;
-        }
+        public virtual User User { get; set; }
     }
 }

@@ -31,25 +31,6 @@ namespace MessageBoard.Models
         [Display(Name = "注册时间")]
         [Required]
         public DateTime CreateTime { get; set; }
-
-        public User(int userId, string username, string password, string sex, string email, DateTime createTime)
-        {
-            UserId = userId;
-            Username = username;
-            Password = password;
-            Sex = sex;
-            Email = email;
-            CreateTime = DateTime.Now;
-        }
-
-        public User()
-        {
-            UserId = 0;
-            Username = "";
-            Password = "";
-            Sex = "";
-            Email = "";
-            CreateTime = DateTime.Now;
-        }
+        
     }
 }

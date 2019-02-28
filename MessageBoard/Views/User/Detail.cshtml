@@ -1,0 +1,50 @@
+﻿@model MessageBoard.Models.User
+
+@{
+    ViewBag.Title = "个人信息";
+    Layout = "~/Views/Shared/_MyLayout2.cshtml";
+}
+
+<div style="padding: 15px;">
+    <div class="layui-row">
+        <div class="layui-col-md-offset4 layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header layui-bg-black">个人信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="150">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td>用户ID</td>
+                                <td>@Model.UserId </td>
+                            </tr>
+                            <tr>
+                                <td>用户名</td>
+                                <td>@Model.Username </td>
+                            </tr>
+                            <tr>
+                                <td>性别</td>
+                                <td>@Model.Sex</td>
+                            </tr>
+                            <tr>
+                                <td>邮箱</td>
+                                <td>@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <td>注册时间</td>
+                                <td>@Model.CreateTime</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-row">
+                    <a class="layui-btn layui-btn-radius" href="/User/Edit/@Model.UserId">修改个人信息</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

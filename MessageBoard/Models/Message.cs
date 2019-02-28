@@ -15,25 +15,15 @@ namespace MessageBoard.Models
 
         public int LastMessageId { get; set; }
 
-        public virtual User User { get; set; }
+        public int UserId { get; set; }
 
-        public virtual Topic Topic { get; set; }
+        public int TopicId { get; set; }
 
         public DateTime CreateTime { get; set; }
 
-        public Message(int messageId, string messageContent, int lastMessageId, User user, Topic topic, DateTime createTime)
-        {
-            MessageId = messageId;
-            MessageContent = messageContent;
-            LastMessageId = lastMessageId;
-            User = user;
-            Topic = topic;
-            CreateTime = DateTime.Now;
-        }
+        public virtual User User { get; set; }
 
-        public Message()
-        {
-            CreateTime = DateTime.Now;
-        }
+        public virtual Topic Topic { get; set; }
+       
     }
 }

@@ -1,8 +1,31 @@
-﻿
+﻿@model IEnumerable<MessageBoard.Models.Topic>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "留言主题";
     Layout = "~/Views/Shared/_MyLayout2.cshtml";
 }
 
+<div style="padding: 15px;">
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="fly-panel" style="margin-bottom: 0;">
+                <ul class="fly-list">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <h2>
+                                <a href="detail.html">@item.TopicTitle</a>
+                            </h2>
+                            <div class="fly-list-info">
+                                <a href="user/home.html" link>
+                                    <cite>@item.User.Username</cite>
+                                </a>
+                                <span>@item.CreateTime</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
 
-
+    </div>
+</div>
