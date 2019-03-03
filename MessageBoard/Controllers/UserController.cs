@@ -41,7 +41,7 @@ namespace MessageBoard.Controllers
 
                 Session["Username"] = u.Username;
                 Session["UserId"] = u.UserId;
-                return RedirectToAction("Detail");
+                return RedirectToAction("Index", "Topic");
             }
             else
             {
@@ -79,9 +79,9 @@ namespace MessageBoard.Controllers
         [HttpPost]
         public ActionResult Edit(User user)
         {
-            if (user!=null)
+            if (user != null)
             {
-                var updateUser=dataContext.Users.Find(user.UserId);
+                var updateUser = dataContext.Users.Find(user.UserId);
                 updateUser.Password = user.Password;
                 updateUser.Sex = user.Sex;
                 updateUser.Email = user.Email;
@@ -91,6 +91,6 @@ namespace MessageBoard.Controllers
             return View(user);
         }
 
-       
+
     }
 }

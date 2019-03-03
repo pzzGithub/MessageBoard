@@ -13,7 +13,7 @@ namespace MessageBoard.Controllers
 
         public ActionResult Index()
         {
-            var topics=dataContext.Topics.ToList();
+            var topics = dataContext.Topics.ToList();
             return View(topics);
         }
     }

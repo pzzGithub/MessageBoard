@@ -1,0 +1,36 @@
+﻿@model MessageBoard.Models.Message
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MyLayout2.cshtml";
+}
+
+<div class="layui-container fly-marginTop">
+    <div class="fly-panel" pad20 style="padding-top: 5px;">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-tab layui-tab-brief" lay-filter="user">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">回复留言</li>
+                </ul>
+                <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+                    <div class="layui-tab-item layui-show">
+                        <form action="/Reply/Create" method="post">
+                            <input type="hidden" name="MessageId" value="@Model.MessageId"/>
+                            <div class="layui-row layui-col-space15 layui-form-item">
+                                <div class="layui-col-md9">
+                                    <label class="layui-form-label">回复内容</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="ReplyContent" required lay-verify="required" placeholder="回复内容" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit>立即发布</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

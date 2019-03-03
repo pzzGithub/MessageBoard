@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout2.cshtml";
+}
+
+<div style="padding: 15px;">
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md10 content detail">
+                <div class="fly-panel detail-box">
+                    <h1>@ViewBag.Topic.TopicTitle</h1>
+                    <div class="detail-about">
+                        <div class="fly-detail-user">
+                            <a class="fly-link">
+                                <cite>@ViewBag.Topic.User.Username</cite>
+                            </a>
+                            <span>@ViewBag.Topic.CreateTime</span>
+                        </div>
+                    </div>
+                    <div class="detail-body photos">
+                        <p>
+                            @ViewBag.Topic.TopicDescription
+                        </p>
+                    </div>
+                    
+                    <div class="fly-panel detail-box" id="flyReply">
+                        
+                        <fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
+                            <legend>留言</legend>
+                        </fieldset>
+                        <ul class="jieda" id="jieda">
+                            @foreach (var message in ViewBag.Messages)
+                            {
+                                <li>
+                                    <div class="detail-about" style="background-color:#fff;padding:15px 15px 15px 0px;">
+                                        <div class="fly-detail-user">
+                                            <a class="fly-link">
+                                                <cite>@message.User.Username</cite>
+                                            </a>
+                                            <span>@message.CreateTime</span>
+                                        </div>
+                                    </div>
+                                    <div class="detail-body jieda-body photos">
+                                        <p>@message.MessageContent</p>
+                                    </div>
+                                    @foreach (var reply in ViewBag.Replies)
+                                    {
+                                        if (reply.MessageId == message.MessageId)
+                                        {
+                                            <div style="background-color:#f8f8f8;padding:15px;margin-left:15px;margin-bottom:5px;">
+                                                <div class="fly-detail-user">
+                                                    <a class="fly-link">
+                                                        <cite>@reply.User.Username</cite>
+                                                    </a>
+                                                    <span>@reply.CreateTime</span>
+                                                </div>
+                                                <p>@reply.ReplyContent</p>
+                                            </div>
+                                        }
+                                    }
+
+                                    <div class="jieda-reply layui-col-md-offset11">
+                                        <span type="reply">
+                                            <i class="iconfont icon-svgmoban53"></i>
+                                            <a href="/Reply/Create/@message.MessageId">回复</a> 
+                                        </span>
+
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+
+                        <div class="layui-form layui-form-pane">
+                            <form action="/Message/Create" method="post">
+                                <div class="layui-form-item layui-form-text">
+                                    <a name="comment"></a>
+                                    <div class="layui-input-block">
+                                        <textarea id="L_content" name="MessageContent" required lay-verify="required" placeholder="请输入内容" class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="TopicId" value="@ViewBag.Topic.TopicId" />
+                                <div class="layui-form-item">
+                                    <button class="layui-btn" lay-submit>提交回复</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>

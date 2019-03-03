@@ -133,6 +133,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\ReplyController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,6 +143,7 @@
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\DataIntializer.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -303,6 +306,12 @@
     <Content Include="Views\Topic\Create.cshtml" />
     <Content Include="Views\Topic\MyTopic.cshtml" />
     <Content Include="Views\Topic\Edit.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\MyMessage.cshtml" />
+    <Content Include="Views\Message\Edit.cshtml" />
+    <Content Include="Views\Reply\Create.cshtml" />
+    <Content Include="Views\Reply\MyReply.cshtml" />
+    <Content Include="Views\Reply\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

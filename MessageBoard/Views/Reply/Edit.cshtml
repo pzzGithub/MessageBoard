@@ -1,6 +1,6 @@
-﻿@model MessageBoard.Models.Topic
+﻿@model MessageBoard.Models.Reply
 @{
-    ViewBag.Title = "编辑主题";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_MyLayout2.cshtml";
 }
 
@@ -9,28 +9,20 @@
         <div class="layui-form layui-form-pane">
             <div class="layui-tab layui-tab-brief" lay-filter="user">
                 <ul class="layui-tab-title">
-                    <li class="layui-this">编辑留言主题</li>
+                    <li class="layui-this">编辑回复</li>
                 </ul>
                 <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                     <div class="layui-tab-item layui-show">
-                        <form action="/Topic/Edit" method="post">
-                            <input type="hidden" name="TopicId" value="@Model.TopicId" />
+                        <form action="/Reply/Edit" method="post">
+                            <input type="hidden" name="ReplyId" value="@Model.ReplyId" />
                             <input type="hidden" name="UserId" value="@Model.UserId" />
+                            <input type="hidden" name="MessageId" value="@Model.MessageId" />
                             <input type="hidden" name="CreateTime" value="@Model.CreateTime" />
-
                             <div class="layui-row layui-col-space15 layui-form-item">
                                 <div class="layui-col-md9">
-                                    <label class="layui-form-label">标题</label>
+                                    <label class="layui-form-label">回复内容</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="TopicTitle" required lay-verify="required" autocomplete="off" class="layui-input" value="@Model.TopicTitle">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row layui-col-space15 layui-form-item">
-                                <div class="layui-col-md9">
-                                    <label class="layui-form-label">详细描述</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" name="TopicDescription" required lay-verify="required" placeholder="详细描述" autocomplete="off" class="layui-input" value="@Model.TopicDescription">
+                                        <input type="text" name="ReplyContent" required lay-verify="required" placeholder="回复内容" autocomplete="off" class="layui-input" value="@Model.ReplyContent">
                                     </div>
                                 </div>
                             </div>
@@ -44,3 +36,5 @@
         </div>
     </div>
 </div>
+
+

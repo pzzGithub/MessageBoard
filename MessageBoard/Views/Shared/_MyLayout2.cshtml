@@ -16,7 +16,8 @@
             <ul class="layui-nav layui-bg-cyan">
                 <li class="layui-nav-item"><a href="/Topic/Index">在线留言本</a></li>
                 <li class="layui-nav-item"><a href="/Topic/MyTopic">我的留言主题</a></li>
-                <li class="layui-nav-item"><a href="">我的留言</a></li>
+                <li class="layui-nav-item"><a href="/Message/MyMessage">我的留言</a></li>
+                <li class="layui-nav-item"><a href="/Reply/MyReply">我的回复</a></li>
             </ul>
             <ul class="layui-nav layui-layout-right layui-bg-cyan">
                 <li class="layui-nav-item"><a href="/User/Detail">@Session["Username"]</a></li>
@@ -29,9 +30,10 @@
         </div>
     </div>
 
+
     <script src="~/layui/layui.js"></script>
     <script>
-        layui.use('form', function () {
+        layui.use(['form', 'element'], function () {
             var form = layui.form;
             form.render();
         });

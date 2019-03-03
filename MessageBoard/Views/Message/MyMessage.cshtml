@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MessageBoard.Models.Message>
+@{
+    ViewBag.Title = "MyMessage";
+    Layout = "~/Views/Shared/_MyLayout2.cshtml";
+}
+
+
+<div style="padding: 15px;">
+    <div class="layui-container">
+        <table class="layui-table">
+            <colgroup>
+                <col width="50">
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="100">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>留言主题</th>
+                    <th>留言内容</th>
+                    <th>留言时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.MessageId</td>
+                    <td>@item.Topic.TopicTitle</td>
+                    <td>@item.MessageContent</td>
+                    <td>@item.CreateTime</td>
+                    <td>
+                        <a class="layui-btn" href="/Message/Edit/@item.MessageId">编辑</a>
+                        <a class="layui-btn layui-btn-danger" href="/Message/Delete/@item.MessageId">删除</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MessageBoard.Models
 {
-    public class DataIntializer: DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataIntializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
         protected override void Seed(DataContext context)
         {

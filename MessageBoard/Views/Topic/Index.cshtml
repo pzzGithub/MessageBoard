@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<MessageBoard.Models.Topic>
 @{
-    ViewBag.Title = "留言主题";
+    ViewBag.Title = "在线留言本";
     Layout = "~/Views/Shared/_MyLayout2.cshtml";
 }
 
@@ -13,7 +13,7 @@
                     {
                         <li>
                             <h2>
-                                <a href="detail.html">@item.TopicTitle</a>
+                                <a href="/Message/Index/@item.TopicId">@item.TopicTitle</a>
                             </h2>
                             <div class="fly-list-info">
                                 <a href="user/home.html" link>

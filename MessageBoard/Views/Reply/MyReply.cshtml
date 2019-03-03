@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MessageBoard.Models.Reply>
+@{
+    ViewBag.Title = "MyReply";
+    Layout = "~/Views/Shared/_MyLayout2.cshtml";
+}
+
+<div style="padding: 15px;">
+    <div class="layui-container">
+        <table class="layui-table">
+            <colgroup>
+                <col width="50">
+                <col>
+                <col>
+                <col>
+                <col>
+                <col width="200">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>留言主题</th>
+                    <th>回复留言内容</th>
+                    <th>回复内容</th>
+                    <th>回复时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.ReplyId</td>
+                    <td>@item.Message.Topic.TopicTitle</td>
+                    <td>@item.Message.MessageContent</td>
+                    <td>@item.ReplyContent</td>
+                    <td>@item.CreateTime</td>
+                    <td>
+                        <a class="layui-btn" href="/Reply/Edit/@item.ReplyId">编辑</a>
+                        <a class="layui-btn layui-btn-danger" href="/Reply/Delete/@item.ReplyId">删除</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

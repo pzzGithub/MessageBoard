@@ -14,6 +14,7 @@ namespace MessageBoard.Controllers
         public ActionResult Index()
         {
             var topics = dataContext.Topics.ToList();
+
             return View(topics);
         }
 
@@ -28,26 +29,26 @@ namespace MessageBoard.Controllers
             topic.UserId = (int)Session["UserId"];
             dataContext.Topics.Add(topic);
             dataContext.SaveChanges();
-            return Content(topic.TopicTitle);
+            return RedirectToAction("Index");
         }
 
         public ActionResult MyTopic()
         {
             int UserId = (int)Session["UserId"];
-            var topics = dataContext.Topics.Where(t=>t.UserId.Equals(UserId)).ToList();
+            var topics = dataContext.Topics.Where(t => t.UserId == UserId).ToList();
             return View(topics);
         }
 
         public ActionResult Edit(int id)
         {
-            var topic=dataContext.Topics.Find(id);
+            var topic = dataContext.Topics.Find(id);
             return View(topic);
-            
+
         }
         [HttpPost]
         public ActionResult Edit(Topic topic)
         {
-            Topic updateTopic=dataContext.Topics.Find(topic.TopicId);
+            Topic updateTopic = dataContext.Topics.Find(topic.TopicId);
             updateTopic.TopicTitle = topic.TopicTitle;
             updateTopic.TopicDescription = topic.TopicDescription;
             dataContext.SaveChanges();
@@ -56,8 +57,8 @@ namespace MessageBoard.Controllers
 
         public ActionResult Delete(int id)
         {
-            Topic topic=dataContext.Topics.Find(id);
-            if(topic!=null)
+            Topic topic = dataContext.Topics.Find(id);
+            if (topic != null)
             {
                 dataContext.Topics.Remove(topic);
                 dataContext.SaveChanges();

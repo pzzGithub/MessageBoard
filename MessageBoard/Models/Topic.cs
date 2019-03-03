@@ -12,15 +12,14 @@ namespace MessageBoard.Models
         [Key]
         public int TopicId { get; set; }
 
-        [Display(Name = "留言主题名")]
-        [Required(ErrorMessage = "必填")]
+        [Required]
         public string TopicTitle { get; set; }
 
+        [Required]
         public string TopicDescription { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
-        [Display(Name = "添加时间")]
         [Required]
         public DateTime CreateTime { get; set; }
 

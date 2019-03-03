@@ -6,34 +6,36 @@
 
 <div style="padding: 15px;">
     <div class="layui-container">
+        <div class="layui-row layui-col-md-offset11">
+            <a class="layui-btn layui-btn-normal" href="/Topic/Create">添加主题</a>
+        </div>
         <div class="layui-row">
             <div class="fly-panel" style="margin-bottom: 0;">
                 <ul class="fly-list">
                     @foreach (var item in Model)
                     {
-                    <li>
-                        <div class="layui-row">
-                            <div class="layui-col-md10">
-                                <h2>
-                                    <a href="detail.html">@item.TopicTitle</a>
-                                </h2>
-                                <div class="fly-list-info">
-                                    <cite>@item.User.Username</cite>
-                                    <span>@item.CreateTime</span>
+                        <li>
+                            <div class="layui-row">
+                                <div class="layui-col-md10">
+                                    <h2>
+                                        <a href="/Message/Index/@item.TopicId">@item.TopicTitle</a>
+                                    </h2>
+                                    <div class="fly-list-info">
+                                        <cite>@item.User.Username</cite>
+                                        <span>@item.CreateTime</span>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md2">
+                                    <a href="/Topic/Edit/@item.TopicId" class="layui-btn">编辑</a>
+                                    <a href="/Topic/Delete/@item.TopicId" class="layui-btn layui-btn-danger">删除</a>
                                 </div>
                             </div>
-                            <div class="layui-col-md2">
-                                <div class=" "></div>
-                                <a href="/Topic/Edit/@item.TopicId" class="layui-btn">编辑</a>
-                                <a href="/Topic/Delete/@item.TopicId" class="layui-btn layui-btn-danger">删除</a>
-                            </div>
-                        </div>
-                        
-                    </li>
+
+                        </li>
                     }
                 </ul>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
