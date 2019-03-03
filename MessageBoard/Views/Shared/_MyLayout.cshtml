@@ -13,16 +13,29 @@
 <body>
     <div class="layui-layout-admin">
         <div class="layui-header">
-            <ul class="layui-nav layui-bg-cyan">
-                <li class="layui-nav-item"><a href="">在线留言本</a></li>
-                @*<li class="layui-nav-item"><a href="">产品</a></li>
-                <li class="layui-nav-item"><a href="">大数据</a></li>
-                <li class="layui-nav-item"><a href="">社区</a></li>*@
-            </ul>
-            <ul class="layui-nav layui-layout-right layui-bg-cyan">
-                <li class="layui-nav-item"><a href="/User/Login">登陆</a></li>
-                <li class="layui-nav-item"><a href="/User/Register">注册</a></li>
-            </ul>
+            @if ((string)Session["Username"] != null)
+            {
+                <ul class="layui-nav layui-bg-cyan">
+                    <li class="layui-nav-item"><a href="/Topic/Index">在线留言本</a></li>
+                    <li class="layui-nav-item"><a href="/Topic/MyTopic">我的留言主题</a></li>
+                    <li class="layui-nav-item"><a href="/Message/MyMessage">我的留言</a></li>
+                    <li class="layui-nav-item"><a href="/Reply/MyReply">我的回复</a></li>
+                </ul>
+                <ul class="layui-nav layui-layout-right layui-bg-cyan">
+                    <li class="layui-nav-item"><a href="/User/Detail">@Session["Username"]</a></li>
+                    <li class="layui-nav-item"><a href="/User/Logout">退出登陆</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul class="layui-nav layui-bg-cyan">
+                    <li class="layui-nav-item"><a href="">在线留言本</a></li>
+                </ul>
+                <ul class="layui-nav layui-layout-right layui-bg-cyan">
+                    <li class="layui-nav-item"><a href="/User/Login">登陆</a></li>
+                    <li class="layui-nav-item"><a href="/User/Register">注册</a></li>
+                </ul>
+            }
         </div>
 
         <div class="layui-layout-body">
@@ -32,7 +45,7 @@
 
     <script src="~/layui/layui.js"></script>
     <script>
-        layui.use('form', function () {
+        layui.use(['form', 'element'], function () {
             var form = layui.form;
             form.render();
         });
