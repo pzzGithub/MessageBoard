@@ -11,11 +11,7 @@ namespace MessageBoard.Controllers
     {
         private DataContext dataContext = new DataContext();
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        //回复留言页面
         public ActionResult Create(int id)
         {
             Message message = dataContext.Messages.Find(id);
@@ -29,6 +25,7 @@ namespace MessageBoard.Controllers
             }
         }
 
+        //添加回复
         [HttpPost]
         public ActionResult Create(Reply reply)
         {
@@ -47,6 +44,7 @@ namespace MessageBoard.Controllers
             }
         }
 
+        //我的回复页面
         public ActionResult MyReply()
         {
             if (Session["UserId"] != null)
@@ -59,6 +57,7 @@ namespace MessageBoard.Controllers
                 return Content("未登陆");
         }
 
+        //删除回复
         public ActionResult Delete(int id)
         {
             var reply = dataContext.Replies.Find(id);
@@ -72,6 +71,7 @@ namespace MessageBoard.Controllers
                 return Content("该回复不存在");
         }
 
+        //编辑回复页面
         public ActionResult Edit(int id)
         {
             var reply = dataContext.Replies.Find(id);
@@ -83,6 +83,7 @@ namespace MessageBoard.Controllers
                 return Content("该回复不存在");
         }
 
+        //修改回复
         [HttpPost]
         public ActionResult Edit(Reply reply)
         {

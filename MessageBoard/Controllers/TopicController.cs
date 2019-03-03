@@ -11,6 +11,7 @@ namespace MessageBoard.Controllers
     {
         private DataContext dataContext = new DataContext();
 
+        //显示所有留言主题
         public ActionResult Index()
         {
             var topics = dataContext.Topics.ToList();
@@ -18,10 +19,13 @@ namespace MessageBoard.Controllers
             return View(topics);
         }
 
+        //添加留言主题页面
         public ActionResult Create()
         {
             return View();
         }
+
+        //添加留言主题
         [HttpPost]
         public ActionResult Create(Topic topic)
         {
@@ -32,6 +36,7 @@ namespace MessageBoard.Controllers
             return RedirectToAction("Index");
         }
 
+        //我的留言主题页面
         public ActionResult MyTopic()
         {
             int UserId = (int)Session["UserId"];
@@ -39,12 +44,15 @@ namespace MessageBoard.Controllers
             return View(topics);
         }
 
+        //编辑留言主题页面
         public ActionResult Edit(int id)
         {
             var topic = dataContext.Topics.Find(id);
             return View(topic);
 
         }
+
+        //修改留言主题
         [HttpPost]
         public ActionResult Edit(Topic topic)
         {
@@ -55,6 +63,7 @@ namespace MessageBoard.Controllers
             return RedirectToAction("MyTopic");
         }
 
+        //删除留言主题
         public ActionResult Delete(int id)
         {
             Topic topic = dataContext.Topics.Find(id);

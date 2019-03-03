@@ -11,6 +11,7 @@ namespace MessageBoard.Controllers
     {
         private DataContext dataContext = new DataContext();
 
+        //显示该主题下的所有留言回复
         public ActionResult Index(int id)
         {
             var topic = dataContext.Topics.Find(id);
@@ -22,6 +23,7 @@ namespace MessageBoard.Controllers
             return View();
         }
 
+        //添加留言
         [HttpPost]
         public ActionResult Create(Message message)
         {
@@ -32,6 +34,7 @@ namespace MessageBoard.Controllers
             return RedirectToAction("Index/" + message.TopicId);
         }
 
+        //我的留言页面
         public ActionResult MyMessage()
         {
             if (Session["UserId"] != null)
@@ -44,6 +47,7 @@ namespace MessageBoard.Controllers
                 return Content("未登陆");
         }
 
+        //删除留言
         public ActionResult Delete(int id)
         {
             var message=dataContext.Messages.Find(id);
@@ -57,6 +61,7 @@ namespace MessageBoard.Controllers
                 return Content("该留言不存在");
         }
 
+        //编辑留言页面
         public ActionResult Edit(int id)
         {
             var message = dataContext.Messages.Find(id);
@@ -68,6 +73,7 @@ namespace MessageBoard.Controllers
                 return Content("该留言不存在");
         }
 
+        //修改留言
         [HttpPost]
         public ActionResult Edit(Message message)
         {

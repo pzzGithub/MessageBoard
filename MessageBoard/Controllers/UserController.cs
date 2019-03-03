@@ -12,10 +12,13 @@ namespace MessageBoard.Controllers
     {
         private DataContext dataContext = new DataContext();
 
+        //注册页面
         public ActionResult Register()
         {
             return View();
         }
+
+        //注册
         [HttpPost]
         public ActionResult Register(User user)
         {
@@ -25,10 +28,13 @@ namespace MessageBoard.Controllers
             return RedirectToAction("Login");
         }
 
+        //登陆页面
         public ActionResult Login()
         {
             return View();
         }
+
+        //登陆
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -51,6 +57,7 @@ namespace MessageBoard.Controllers
 
         }
 
+        //用户个人信息页面
         public ActionResult Detail()
         {
             string username = (string)Session["username"];
@@ -69,6 +76,7 @@ namespace MessageBoard.Controllers
 
         }
 
+        //修改用户个人信息页面
         public ActionResult Edit(int id)
         {
             User user = dataContext.Users.Find(id);
@@ -76,6 +84,8 @@ namespace MessageBoard.Controllers
                 return HttpNotFound();
             return View(user);
         }
+
+        //修改用户个人信息
         [HttpPost]
         public ActionResult Edit(User user)
         {
@@ -91,6 +101,7 @@ namespace MessageBoard.Controllers
             return View(user);
         }
 
+        //登出
         public ActionResult Logout()
         {
             Session.Clear();

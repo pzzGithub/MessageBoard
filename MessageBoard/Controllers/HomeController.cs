@@ -11,6 +11,7 @@ namespace MessageBoard.Controllers
     {
         private DataContext dataContext = new DataContext();
 
+        //主页显示所有留言主题
         public ActionResult Index()
         {
             var topics = dataContext.Topics.ToList();
