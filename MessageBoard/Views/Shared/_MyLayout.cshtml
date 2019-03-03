@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="~/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="~/Content/global.css" />
 </head>
-<body>
-    <div class="layui-layout-admin">
-        <div class="layui-header">
+<body style="margin-top:60px;">
+    <div class="layui-header layui-bg-cyan" style="position: fixed;left: 0;top: 0;z-index: 10000;width: 100%;height: 60px;">
+        <div class="layui-container">
             @if ((string)Session["Username"] != null)
             {
                 <ul class="layui-nav layui-bg-cyan">
-                    <li class="layui-nav-item"><a href="/Topic/Index">在线留言本</a></li>
+                    <li class="layui-nav-item"><a href="/Home/Index">在线留言本</a></li>
                     <li class="layui-nav-item"><a href="/Topic/MyTopic">我的留言主题</a></li>
                     <li class="layui-nav-item"><a href="/Message/MyMessage">我的留言</a></li>
                     <li class="layui-nav-item"><a href="/Reply/MyReply">我的回复</a></li>
@@ -37,11 +37,10 @@
                 </ul>
             }
         </div>
-
-        <div class="layui-layout-body">
-            @RenderBody()
-        </div>
     </div>
+
+    @RenderBody()
+
 
     <script src="~/layui/layui.js"></script>
     <script>

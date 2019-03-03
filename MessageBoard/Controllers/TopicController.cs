@@ -1,4 +1,5 @@
 ﻿using MessageBoard.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,7 @@ namespace MessageBoard.Controllers
     public class TopicController : Controller
     {
         private DataContext dataContext = new DataContext();
-
-        //显示所有留言主题
-        public ActionResult Index()
-        {
-            var topics = dataContext.Topics.ToList();
-
-            return View(topics);
-        }
-
+        
         //添加留言主题页面
         public ActionResult Create()
         {
@@ -33,15 +26,18 @@ namespace MessageBoard.Controllers
             topic.UserId = (int)Session["UserId"];
             dataContext.Topics.Add(topic);
             dataContext.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         //我的留言主题页面
-        public ActionResult MyTopic()
+        public ActionResult MyTopic(int? page)
         {
             int UserId = (int)Session["UserId"];
             var topics = dataContext.Topics.Where(t => t.UserId == UserId).ToList();
-            return View(topics);
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
+            IPagedList<Topic> pagedList = topics.ToPagedList(pageNumber, pageSize);
+            return View(pagedList);
         }
 
         //编辑留言主题页面

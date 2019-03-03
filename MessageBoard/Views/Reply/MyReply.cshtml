@@ -1,11 +1,18 @@
-﻿@model IEnumerable<MessageBoard.Models.Reply>
+﻿@model PagedList.IPagedList<MessageBoard.Models.Reply>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "MyReply";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 <div style="padding: 15px;">
     <div class="layui-container">
+        <div class="layui-row" style="background-color:#393D49;padding:10px 20px;">
+            <div style="float:left;">
+                <h2 style="color:#c2c2c2;">我的回复</h2>
+            </div>
+        </div>
         <table class="layui-table">
             <colgroup>
                 <col width="50">
@@ -28,20 +35,21 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>@item.ReplyId</td>
-                    <td>@item.Message.Topic.TopicTitle</td>
-                    <td>@item.Message.MessageContent</td>
-                    <td>@item.ReplyContent</td>
-                    <td>@item.CreateTime</td>
-                    <td>
-                        <a class="layui-btn" href="/Reply/Edit/@item.ReplyId">编辑</a>
-                        <a class="layui-btn layui-btn-danger" href="/Reply/Delete/@item.ReplyId">删除</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@item.ReplyId</td>
+                        <td><a href="/Message/Index/@item.Message.TopicId">@item.Message.Topic.TopicTitle</a></td>
+                        <td>@item.Message.MessageContent</td>
+                        <td>@item.ReplyContent</td>
+                        <td>@item.CreateTime</td>
+                        <td>
+                            <a class="layui-btn" href="/Reply/Edit/@item.ReplyId">编辑</a>
+                            <a class="layui-btn layui-btn-danger" href="/Reply/Delete/@item.ReplyId">删除</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("MyMessage", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
     </div>
 </div>
 

@@ -1,4 +1,5 @@
 ﻿using MessageBoard.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,13 +46,16 @@ namespace MessageBoard.Controllers
         }
 
         //我的回复页面
-        public ActionResult MyReply()
+        public ActionResult MyReply(int?page)
         {
             if (Session["UserId"] != null)
             {
                 int UserId = (int)Session["UserId"];
                 var replies = dataContext.Replies.Where(r=>r.UserId==UserId).ToList();
-                return View(replies);
+                int pageNumber = page ?? 1;
+                int pageSize = 8;
+                IPagedList<Reply> pagedList = replies.ToPagedList(pageNumber, pageSize);
+                return View(pagedList);
             }
             else
                 return Content("未登陆");

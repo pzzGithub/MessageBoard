@@ -18,15 +18,15 @@
                             <span>@ViewBag.Topic.CreateTime</span>
                         </div>
                     </div>
-                    <div class="detail-body photos">
-                        <p>
+                    <div class="detail-body" style="margin-top:10px">
+                        <p style="margin:5px 15px;">
                             @ViewBag.Topic.TopicDescription
                         </p>
                     </div>
                     
                     <div class="fly-panel detail-box" id="flyReply">
                         
-                        <fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
+                        <fieldset class="layui-elem-field layui-field-title" style="text-align: center;margin:10px 5px;">
                             <legend>留言</legend>
                         </fieldset>
                         <ul class="jieda" id="jieda">
@@ -41,7 +41,7 @@
                                             <span>@message.CreateTime</span>
                                         </div>
                                     </div>
-                                    <div class="detail-body jieda-body photos">
+                                    <div class="detail-body jieda-body" style="margin:10px;">
                                         <p>@message.MessageContent</p>
                                     </div>
                                     @foreach (var reply in ViewBag.Replies)

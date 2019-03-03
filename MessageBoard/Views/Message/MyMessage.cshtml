@@ -1,19 +1,25 @@
-﻿@model IEnumerable<MessageBoard.Models.Message>
+﻿@model PagedList.IPagedList<MessageBoard.Models.Message>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "MyMessage";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 <div style="padding: 15px;">
     <div class="layui-container">
+        <div class="layui-row" style="background-color:#393D49;padding:10px 20px;">
+            <div style="float:left;">
+                <h2 style="color:#c2c2c2;">我的留言</h2>
+            </div>
+        </div>
         <table class="layui-table">
             <colgroup>
                 <col width="50">
-                <col width="150">
-                <col width="150">
-                <col width="150">
-                <col width="100">
+                <col>
+                <col>
+                <col>
+                <col width="200">
             </colgroup>
             <thead>
                 <tr>
@@ -27,19 +33,20 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>@item.MessageId</td>
-                    <td>@item.Topic.TopicTitle</td>
-                    <td>@item.MessageContent</td>
-                    <td>@item.CreateTime</td>
-                    <td>
-                        <a class="layui-btn" href="/Message/Edit/@item.MessageId">编辑</a>
-                        <a class="layui-btn layui-btn-danger" href="/Message/Delete/@item.MessageId">删除</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@item.MessageId</td>
+                        <td><a href="/Message/Index/@item.TopicId">@item.Topic.TopicTitle</a></td>
+                        <td>@item.MessageContent</td>
+                        <td>@item.CreateTime</td>
+                        <td>
+                            <a class="layui-btn" href="/Message/Edit/@item.MessageId">编辑</a>
+                            <a class="layui-btn layui-btn-danger" href="/Message/Delete/@item.MessageId">删除</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("MyMessage", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
     </div>
 </div>
 

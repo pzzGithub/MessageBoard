@@ -1,4 +1,5 @@
 ﻿using MessageBoard.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,15 @@ namespace MessageBoard.Controllers
     {
         private DataContext dataContext = new DataContext();
 
-        //主页显示所有留言主题
-        public ActionResult Index()
+        //显示所有留言主题
+        public ActionResult Index(int? page)
         {
             var topics = dataContext.Topics.ToList();
-            return View(topics);
+            int pageNumber = page ?? 1;
+            int pageSize = 8;
+            IPagedList<Topic> pagedList = topics.ToPagedList(pageNumber, pageSize);
+            return View(pagedList);
         }
+        
     }
 }

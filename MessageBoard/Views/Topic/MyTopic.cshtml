@@ -1,13 +1,20 @@
-﻿@model IEnumerable<MessageBoard.Models.Topic>
+﻿@model PagedList.IPagedList<MessageBoard.Models.Topic>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "我的留言主题";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 <div style="padding: 15px;">
     <div class="layui-container">
-        <div class="layui-row layui-col-md-offset11">
-            <a class="layui-btn layui-btn-normal" href="/Topic/Create">添加主题</a>
+        <div class="layui-row" style="background-color:#393D49;padding:10px 20px;">
+            <div style="float:left;">
+                <h2 style="color:#c2c2c2;">我的留言主题</h2>
+            </div>
+            <div style="float:right;">
+                <a class="layui-btn" href="/Topic/Create">添加主题</a>
+            </div>
         </div>
         <div class="layui-row">
             <div class="fly-panel" style="margin-bottom: 0;">
@@ -35,7 +42,7 @@
                     }
                 </ul>
             </div>
-
+            @Html.PagedListPager(Model, page => Url.Action("MyTopic", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
         </div>
     </div>
 </div>

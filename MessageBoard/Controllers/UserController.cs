@@ -47,7 +47,7 @@ namespace MessageBoard.Controllers
 
                 Session["Username"] = u.Username;
                 Session["UserId"] = u.UserId;
-                return RedirectToAction("Index", "Topic");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
